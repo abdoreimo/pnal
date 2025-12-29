@@ -54,7 +54,7 @@
         <div class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20 p-4 shadow-sm">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="relative group">
-                    <input type="text" id="search-input" placeholder="ابحث عن نص سؤال، مادة، أو إجراء..." class="w-full pl-4 pr-12 py-3 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all text-sm md:text-base" />
+                    <input type="text" id="search-input" placeholder="بحث..." class="w-full pl-4 pr-12 py-3 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all text-sm md:text-base" />
                     <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-amber-500 transition-colors">🔍</span>
                 </div>
                 <div class="mt-2 flex justify-between items-center px-1">
@@ -65,8 +65,7 @@
         </div>
         <div class="p-4 md:p-8 max-w-4xl mx-auto w-full space-y-6 pb-24">
             <div class="space-y-1">
-                <h1 id="section-title" class="text-2xl md:text-3xl font-black text-[#1A365D] law-font leading-tight">الموسوعة الشاملة</h1>
-                <p class="text-slate-500 text-xs md:text-sm">مطابقة حصرياً لمحاضرات الإجراءات الجزائية المعمقة.</p>
+                <h1 id="section-title" class="text-2xl md:text-3xl font-black text-[#1A365D] law-font leading-tight">أسئلة في مقياس قانون الإجراءات الجزائية المعمقة</h1>
             </div>
             <div id="questions-list" class="grid gap-4 md:gap-6"></div>
             <div id="empty-state" class="hidden text-center py-20">
@@ -361,7 +360,7 @@
 
         function renderSidebar() {
             const chapters = Object.values(Chapter);
-            let html = `<button onclick="selectChapter('All')" class="w-full text-right p-3 rounded-xl transition-all flex justify-between items-center group ${state.selectedChapter === 'All' ? 'bg-amber-500 text-white shadow-lg scale-[1.02]' : 'hover:bg-white/5 text-blue-100'}"><span class="font-bold text-sm">الموسوعة الشاملة</span><span class="bg-black/20 px-2 py-0.5 rounded text-[10px]">${questions.length}</span></button><div class="pt-4 pb-2 px-2 text-[10px] uppercase tracking-widest text-blue-300/50 font-bold">المحاور الدراسية</div>`;
+            let html = `<button onclick="selectChapter('All')" class="w-full text-right p-3 rounded-xl transition-all flex justify-between items-center group ${state.selectedChapter === 'All' ? 'bg-amber-500 text-white shadow-lg scale-[1.02]' : 'hover:bg-white/5 text-blue-100'}"><span class="font-bold text-sm">كل الأسئلة</span><span class="bg-black/20 px-2 py-0.5 rounded text-[10px]">${questions.length}</span></button><div class="pt-4 pb-2 px-2 text-[10px] uppercase tracking-widest text-blue-300/50 font-bold">المحاور الدراسية</div>`;
             chapters.forEach(chapter => {
                 const total = questions.filter(q => q.category === chapter).length;
                 const solved = questions.filter(q => q.category === chapter && state.revealedIds.has(q.id)).length;
@@ -376,7 +375,7 @@
         function renderQuestions() {
             const filtered = getFilteredQuestions();
             els.resultsCount.innerText = filtered.length;
-            els.sectionTitle.innerText = state.selectedChapter === 'All' ? 'الموسوعة الإجرائية الكاملة' : state.selectedChapter;
+            els.sectionTitle.innerText = state.selectedChapter === 'All' ? 'أسئلة في مقياس قانون الإجراءات الجزائية المعمقة' : state.selectedChapter;
             if (filtered.length === 0) { els.questionsList.innerHTML = ''; els.emptyState.classList.remove('hidden'); return; }
             els.emptyState.classList.add('hidden');
             els.questionsList.innerHTML = filtered.map(q => {
